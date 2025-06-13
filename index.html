@@ -3,122 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umair Malik | Web Developer</title>
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>Advanced Profile Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo" data-aos="fade-right" data-aos-duration="800">
-                    <div class="logo-text">Umair Malik</div>
-                    <div class="logo-details">
-                    </div>
-                </div>
-                <nav class="nav-desktop" data-aos="fade-left" data-aos-duration="800">
-                    <ul>
-                        <li><a href="#" class="nav-link">Home</a></li>
-                        <li><a href="#skills" class="nav-link">Skills</a></li>
-                        <li><a href="#experience" class="nav-link">Experience</a></li>
-                        <li><a href="#projects" class="nav-link">Projects</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Umair Malik</a>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
             </div>
-        </div>
-        <div id="mobile-menu" class="mobile-menu">
-            <ul>
-                <li><a href="#" class="mobile-nav-link">Home</a></li>
-                <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
-                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
-                <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="badge" data-aos="zoom-in" data-aos-delay="200">Shopify & Wordpress Developer</div>
-                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="300">Umair Malik</h1>
-                    <p class="hero-description" id="typed-text" data-aos="fade-up" data-aos-delay="400"></p>
-                    <div class="hero-tags" data-aos="fade-up" data-aos-delay="500">
-                         <span class="tag">Custom Web Solutions</span>
-                         <span class="tag">Modern UI/UX Design</span>
-                         <span class="tag">Pixel-Perfect Development</span>
-                         <span class="tag">SEO-Optimized Websites</span>
-                        <span class="tag">Tech Solutions</span>
-                        <span class="tag">Generative AI</span>
-                        <span class="tag">Friendly & Responsive Sites</span>
-                        <span class="tag">Dynamic Sites</span>
-                    </div>
-                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                        <a href="#projects" class="btn btn-primary">
-                            View Projects
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            Contact Me
-                        </a>
-                    </div>
-                    <div class="social-links" data-aos="fade-up" data-aos-delay="700">
-                        <a href="https://github.com" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="/cdn-cgi/l/email-protection#1a69727b6b346d737676737b7769347b735a7d777b737634797577" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                    <div class="profile-image">
-                       <img src="images/WhatsApp Image 2025-03-27 at 8.29.30 PM.jpeg" alt="shaquille">
-                    </div>
-                </div>
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <h1 class="animated-text">Umair Malik</h1>
+            <p class="subtitle">Full Stack Developer</p>
+            <p class="experience-text">5+ years of experience in building modern web applications. Specialized in React, Node.js, and cloud technologies. Passionate about creating efficient and scalable solutions.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn primary-btn">Contact Me</a>
+                <a href="#projects" class="btn secondary-btn">View Projects</a>
             </div>
-            <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="800">
-                <a href="#about">
-                    <i class="fas fa-chevron-down"></i>
-                </a>
+        </div>
+        <div class="hero-image-container" data-aos="fade-left">
+            <div class="profile-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Umair Malik">
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="about" class="about">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know more about my background, expertise, and what drives me to create impactful web solutions.</p>
-            </div>
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
             <div class="about-content">
-                <div class="about-text" data-aos="fade-up" data-aos-delay="200">
-                    <h3 data-aos="fade-up" data-aos-delay="300">Professional Web Developer</h3>
-                    <p data-aos="fade-up" data-aos-delay="400">I am a professional WordPress and Shopify developer with extensive experience in crafting high-performance, scalable, and visually stunning websites. I specialize in custom theme and plugin development, seamless third-party integrations, and optimizing eCommerce experiences for maximum conversions. With a deep understanding of responsive design, advanced customization, and performance optimization, I ensure that every project aligns perfectly with business goals and user expectations.</p>
-                    <p data-aos="fade-up" data-aos-delay="500">A Passionate WordPress and Shopify developer, adept at building dynamic, high-performing websites with a focus on functionality, aesthetics, and seamless user experience. My expertise lies in custom theme development, advanced coding solutions, and optimizing eCommerce platforms for scalability and efficiency. With a keen eye for detail and a commitment to industry best practices, I deliver tailored solutions that enhance brand presence and drive business growth.</p>
-                    <div class="about-tags" data-aos="fade-up" data-aos-delay="600">
-                        <span class="tag tag-blue"><i class="fas fa-briefcase"></i> Technical Leadership</span>
-                        <span class="tag tag-purple"><i class="fas fa-graduation-cap"></i> STEM Education</span>
-                        <span class="tag tag-green"><i class="fas fa-heart"></i> Community Building</span>
+                <div class="about-text" data-aos="fade-right">
+                    <div class="about-header">
+                        <h3>Full Stack Developer</h3>
+                        <div class="experience-badge">
+                            <span>5+</span>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                    <p class="about-description">
+                        I am a dedicated Full Stack Developer with over 5 years of experience, specializing in crafting robust and scalable web applications. My journey has provided me with extensive expertise in e-commerce solutions, particularly within the Shopify ecosystem.
+                        I excel at developing custom Shopify themes, optimizing store performance, and integrating complex APIs to enhance functionality. My focus is on delivering seamless user experiences and efficient backend systems that drive business growth.
+                        I am passionate about leveraging modern web technologies to create innovative and impactful digital products, always striving for clean code and responsive design.
+                        My deep understanding of Liquid, Shopify's templating language, allows me to implement highly customized features and design elements. I am also adept at working with various Shopify APIs to extend store capabilities, including inventory management, order processing, and customer relationship management.
+                        Furthermore, I have a proven track record of collaborating with clients to understand their unique business needs and translate them into effective technical solutions. My goal is to empower businesses with high-performing, user-friendly e-commerce platforms.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-code"></i>
+                            <h4>Clean Code</h4>
+                            <p>Writing maintainable and efficient code</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Responsive Design</h4>
+                            <p>Creating beautiful mobile-first experiences</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-server"></i>
+                            <h4>Backend Development</h4>
+                            <p>Building robust server-side applications</p>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,320 +103,330 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills section">
+    <section id="skills" class="skills">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">A comprehensive overview of my technical expertise across various domains, from web development to design tools.</p>
-            </div>
+            <h2 class="section-title" data-aos="fade-up">Skills</h2>
             <div class="skills-grid">
-                <!-- Machine Learning & AI -->
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <div class="category-header">
-                        <i class="fas fa-laptop"></i>
-                        <h3>Machine Learning & AI</h3>
+                <div class="skill-card" data-aos="fade-up">
+                    <div class="skill-icon">
+                        <i class="fab fa-shopify"></i>
                     </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="300">Deep Learning</span>
-                        <span class="skill-tag advanced" data-aos="zoom-in" data-aos-delay="350">Computer Vision</span>
-                        <span class="skill-tag advanced" data-aos="zoom-in" data-aos-delay="400">Reinforcement Learning</span>
-                        <span class="skill-tag advanced" data-aos="zoom-in" data-aos-delay="450">Generative AI</span>
+                    <h3>Shopify Liquid</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="90%"></div>
                     </div>
                 </div>
-                
-                <!-- Programming & Development -->
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <div class="category-header">
-                        <i class="fas fa-code"></i>
-                        <h3>Programming & Development</h3>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
                     </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="350">Html</span>
-                        <span class="skill-tag advanced" data-aos="zoom-in" data-aos-delay="400">Css</span>
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="450">JavaScript</span>
-                         <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="450">Jquerry</span>
-                        <span class="skill-tag advanced" data-aos="zoom-in" data-aos-delay="500">Bootstrap</span>
-                        <span class="skill-tag intermediate" data-aos="zoom-in" data-aos-delay="550">Elementor</span>
-                        <span class="skill-tag intermediate" data-aos="zoom-in" data-aos-delay="600">Shopify</span>
-                        <span class="skill-tag intermediate" data-aos="zoom-in" data-aos-delay="650">ACF</span>
+                    <h3>HTML5</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="95%"></div>
                     </div>
                 </div>
-                
-                <!-- AI Frameworks & Tools -->
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
-                    <div class="category-header">
-                        <i class="fas fa-microchip"></i>
-                        <h3>Design Tools</h3>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
                     </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="450">Canva</span>
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="500">Illustrator</span>
-                        <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="550">Figma</span>
-                         <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="550">PSD</span>
-                         <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="550">XD</span>
-                         <span class="skill-tag expert" data-aos="zoom-in" data-aos-delay="550">PDF</span>
+                    <h3>CSS3</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>React</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="80%"></div>
+                    </div>
+                </div>
+                <!-- Hidden Skills -->
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="500">
+                    <div class="skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>Node.js</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="600">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="700">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>MongoDB</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="800">
+                    <div class="skill-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3>AWS</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="900">
+                    <div class="skill-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3>Docker</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card hidden-skill" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Git</h3>
+                    <div class="progress-bar">
+                        <div class="progress" data-progress="90%"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Professional Journey</h2>
-                <p class="section-subtitle">My professional experiences and career highlights in web development.</p>
-            </div>
-            <div class="experience-timeline">
-                <div class="experience-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Shopify & Wordpress Developer</h3>
-                        <div class="experience-badge">Work Experience</div>
-                    </div>
-                    <div class="experience-details">
-                        <div class="experience-company">
-                            <i class="fas fa-building"></i>
-                            <span>Technology Brainz</span>
-                        </div>
-                        <div class="experience-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Lahore</span>
-                        </div>
-                        <div class="experience-period">
-                            <i class="fas fa-calendar"></i>
-                            <span>January 2021 - Present</span>
-                        </div>
-                    </div>
-                    <p class="experience-description">
-                        Leading technical initiatives and community programs Worldwide, developing and implementing web solutions for clients across various industries.
-                    </p>
-                </div>
+            <div class="skills-more" data-aos="fade-up" data-aos-delay="400">
+                <button class="more-skills-btn">
+                    <span>More Skills</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects section">
+    <section id="projects" class="projects">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Project Portfolio</h2>
-                <p class="section-subtitle">Explore my portfolio of web development projects. Each project demonstrates different skills and technologies.</p>
-            </div>
-            
-            <div class="featured-project" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="featured-heading"><i class="fas fa-star"></i> Featured Projects</h3>
-            </div>
-            
-            <div class="projects-filter" data-aos="fade-up" data-aos-delay="300">
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-filter="all">All Projects</button>
-                </div>
-            </div>
-            
-            <div class="container">
-                <h2 data-aos="fade-up" data-aos-delay="400">Projects Completed</h2>
-                <div class="projects">
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="200">
-                        <h3>BAF Motorsports</h3>
-                        <img src="images/Screenshot 2025-04-09 at 8.17.57 PM.png" alt="project_pic">
-                        <a href="https://bafmotorsports.co.uk" target="_blank">Visit Website</a>
+            <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+            <div class="projects-grid">
+                <!-- HomeWetBar Shopify Project -->
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="images/Homewetbar.png" alt="Homewetbar Shopify Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://www.homewetbar.com/" class="project-link" target="_blank">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="#" class="project-github" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="300">
-                        <h3>Standout Socks</h3>
-                         <img src="images/Screenshot 2025-04-10 at 1.10.12 AM.png" alt="project_pic">
-                        <a href="https://standoutsocks.co.uk" target="_blank">Visit Website</a>
-                    </div>
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="400">
-                        <h3>InstaScents</h3>
-                         <img src="images/Screenshot 2025-04-10 at 1.12.31 AM.png" alt="project_pic">
-                        <a href="https://instascents.pk" target="_blank">Visit Website</a>
-                        
-                    </div>
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="500">
-                        <h3>Skinny Boost</h3>
-                         <img src="images/Screenshot 2025-04-10 at 1.14.04 AM.png" alt="project_pic">
-                        <a href="https://skinnyboost.com" target="_blank">Visit Website</a>
-                    </div>
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="600">
-                        <h3>Buy Vitris</h3>
-                         <img src="images/Screenshot 2025-04-10 at 1.14.43 AM.png" alt="project_pic">
-                        <a href="https://buyvitris.com" target="_blank">Visit Website</a>
-                    </div>    
-                    <div class="project-card" data-aos="flip-up" data-aos-delay="700">
-                        <h3>Sundas Ahad</h3>
-                         <img src="images/Screenshot 2025-04-10 at 1.15.23 AM.png" alt="project_pic">
-                        <a href="https://sundasahad.com" target="_blank">Visit Website</a>
+                    <div class="project-content">
+                        <h3>Homewetbar Shopify Project</h3>
+                        <p>A Shopify e-commerce site for HomeWetBar, featuring custom gifts and bar accessories.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                            <span>Shopify</span>
+                            <span>Liquid</span>
+                        </div>
+                        <div class="project-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Tipsyscope Shopify Project -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="images/Tipsyscope.png" alt="Tipsyscope Shopify Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://tipsyscoop.com/" class="project-link" target="_blank">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="#" class="project-github" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Tipsyscope Shopify Project</h3>
+                        <p>An e-commerce platform for Tipsy Scoop, showcasing liquor-infused ice cream with nationwide shipping and barlour locations.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                            <span>Shopify</span>
+                            <span>Liquid</span>
+                        </div>
+                        <div class="project-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AdvantageLift Shopify Project -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="images/AdvantageLift.png" alt="AdvantageLift Shopify Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://realgaragelife.com/" class="project-link" target="_blank">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="#" class="project-github" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>AdvantageLift Shopify Project</h3>
+                        <p>A Shopify e-commerce platform for Advantage Lifts, specializing in professional-grade car lifts and garage equipment.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                            <span>Shopify</span>
+                            <span>Liquid</span>
+                        </div>
+                        <div class="project-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stand Out Socks Shopify Project -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="images/Standout.png" alt="Stand Out Socks Shopify Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://www.standoutsocks.co.uk/" class="project-link" target="_blank">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                                <a href="#" class="project-github" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Stand Out Socks Shopify Project</h3>
+                        <p>A premium sock subscription and e-commerce platform offering unique, colorful socks with a focus on customer experience and subscription management.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                            <span>Shopify</span>
+                            <span>Liquid</span>
+                        </div>
+                        <div class="project-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="projects-more">
+                <button class="more-projects-btn" onclick="toggleMoreProjects()">
+                    More Projects <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </section>
-    
+
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="section-subtitle">Have a question or want to work together? Fill out the form and I'll get back to you as soon as possible.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
-                    <h3>Contact Information</h3>
-                    <p>Feel free to reach out through any of these channels. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                    
-                    <div class="info-items">
-                        <div class="info-item" data-aos="fade-up" data-aos-delay="300">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Email</h4>
-                                <p>malikumairsaeed11@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
-                            <div class="info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Phone</h4>
-                                <p>0308-5197-308</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item" data-aos="fade-up" data-aos-delay="500">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Location</h4>
-                                <p>Iqbal Town, Lahore</p>
-                            </div>
-                        </div>
-                    </div>
+    <section id="contact" class="contact">
+        <h2 data-aos="fade-up">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>malikumairsaeed11@gmail.com</p>
                 </div>
-                
-                <div class="contact-form" data-aos="fade-left" data-aos-delay="300">
-
-                    
-                  <form action="https://formsubmit.co/malikumairsaeed11@gmail.com" method="POST" id="contact-form">
-    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required>
-    </div>
-    
-    <div class="form-group" data-aos="fade-up" data-aos-delay="500">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your email" required>
-    </div>
-    
-    <div class="form-group" data-aos="fade-up" data-aos-delay="600">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" placeholder="Message subject" required>
-    </div>
-    
-    <div class="form-group" data-aos="fade-up" data-aos-delay="700">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
-    </div>
-
-    <!-- Optional Settings -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://tayyabrajpoot826.github.io/tayyabportfolio.github.io/thankyou.html">
-
-    <button type="submit" class="btn btn-primary btn-block" data-aos="fade-up" data-aos-delay="800">
-        <span>Send Message</span>
-        <i class="fas fa-paper-plane"></i>
-    </button>
-</form>
-
-
-                    
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 234 567 890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>New York, USA</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
+            <form class="contact-form" data-aos="fade-left">
+                <div class="form-group">
+                    <input type="text" id="name" required>
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info" data-aos="fade-up" data-aos-delay="200">
-                    <div class="footer-logo">Umair Malik</div>
-                    <p class="footer-description">Passionate Shopify & Wordpress Developer </p>
-                    <div class="footer-social">
-                        <a href="https://github.com" target="_blank" class="social-icon">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="social-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="/cdn-cgi/l/email-protection#50233831217e27393c3c39313d237e313910373d31393c7e333f3d" class="social-icon">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-links" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to receive updates on new projects and articles.</p>
-                    <form id="newsletter-form" class="newsletter-form">
-                        <div class="form-group">
-                            <input type="email" id="newsletter-email" placeholder="Your email" required>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <p class="newsletter-note">I respect your privacy. Unsubscribe at any time.</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="copyright">
-                    &copy; <span id="current-year"></span> Umair Malik. All rights reserved.
-                </div>
-                <div class="back-to-top">
-                    <a href="#" id="back-to-top-btn">
-                        <i class="fas fa-arrow-up"></i>
-                    </a>
-                </div>
-            </div>
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalProjectTitle"></h2>
+            <div id="modalReviewsContainer"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Umair Malik. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-    
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Initialize AOS
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true,
-                mirror: false
-            });
-        });
-    </script>
 </body>
-</html>     
+</html> 

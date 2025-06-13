@@ -252,7 +252,7 @@ function toggleMoreProjects() {
         const additionalProjects = [
             {
                 title: 'Vitrus Shopify Project',
-                image: 'images/Vitrus.png',
+                image: 'Images/Vitrus.png',
                 link: 'https://vitrus.com/',
                 description: 'A comprehensive e-commerce platform for Vitrus, featuring advanced product filtering and customer reviews.',
                 tech: ['HTML', 'CSS', 'Bootstrap', 'Shopify', 'Liquid'],
@@ -260,7 +260,7 @@ function toggleMoreProjects() {
             },
             {
                 title: 'Skinnyboost Shopify Project',
-                image: 'images/Skinyboast.png',
+                image: 'Images/Skinyboast.png',
                 link: 'https://www.skinnyboost.com/',
                 description: 'A health and wellness e-commerce platform with subscription management and loyalty program integration.',
                 tech: ['HTML', 'CSS', 'Bootstrap', 'Shopify', 'Liquid'],

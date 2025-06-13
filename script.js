@@ -1,555 +1,538 @@
+// Initialize AOS (Animate On Scroll)
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+});
 
+// Mobile Navigation
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+const navLinks = document.querySelectorAll('.nav-links li');
+
+burger.addEventListener('click', () => {
+    // Toggle Nav
+    nav.classList.toggle('active');
+    
+    // Animate Links
+    navLinks.forEach((link, index) => {
+        if (link.style.animation) {
+            link.style.animation = '';
+        } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
+    });
+    
+    // Burger Animation
+    burger.classList.toggle('toggle');
+});
+
+// Smooth Scrolling for Navigation Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Close mobile menu if open
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                burger.classList.remove('toggle');
+            }
+        }
+    });
+});
+
+// Navbar Background Change on Scroll
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+        navbar.classList.remove('scroll-up');
+        return;
+    }
+    
+    if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+        // Scroll Down
+        navbar.classList.remove('scroll-up');
+        navbar.classList.add('scroll-down');
+    } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+        // Scroll Up
+        navbar.classList.remove('scroll-down');
+        navbar.classList.add('scroll-up');
+    }
+    lastScroll = currentScroll;
+});
+
+// Header scroll behavior
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Always show header when scrolling
+    header.style.position = 'fixed';
+    header.style.top = '0';
+    header.style.left = '0';
+    header.style.width = '100%';
+    header.style.zIndex = '1000';
+    header.style.background = 'var(--background)';
+    header.style.transition = 'all 0.3s ease';
+
+    lastScrollTop = currentScroll;
+});
+
+// Form Animation and Validation
+const form = document.querySelector('.contact-form');
+const inputs = form.querySelectorAll('input, textarea');
+
+inputs.forEach(input => {
+    // Add placeholder for label animation
+    if (!input.placeholder) {
+        input.placeholder = ' ';
+    }
+    
+    // Add focus and blur events
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('focused');
+    });
+    
+    input.addEventListener('blur', () => {
+        if (!input.value) {
+            input.parentElement.classList.remove('focused');
+        }
+    });
+});
+
+// Form Submission
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Basic form validation
+    let isValid = true;
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.parentElement.classList.add('error');
+        } else {
+            input.parentElement.classList.remove('error');
+        }
+    });
+    
+    if (isValid) {
+        // Add loading state
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual form submission)
+        setTimeout(() => {
+            submitBtn.textContent = 'Message Sent!';
+            submitBtn.style.background = '#10B981';
+            
+            // Reset form
+            form.reset();
+            inputs.forEach(input => {
+                input.parentElement.classList.remove('focused');
+            });
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 3000);
+        }, 1500);
+    }
+});
+
+// Skill Progress Bars Animation
+const skillCards = document.querySelectorAll('.skill-card');
+
+const animateProgressBars = () => {
+    skillCards.forEach(card => {
+        const progress = card.querySelector('.progress');
+        const targetWidth = progress.getAttribute('data-progress'); // Get the target width from data-progress
+        progress.style.width = '0'; // Reset width to 0 to enable animation from start
+
+        // Use a small timeout to allow the browser to render the 0 width before animating
+        setTimeout(() => {
+            progress.style.width = targetWidth;
+        }, 50); // A small delay (e.g., 50ms)
+    });
+};
+
+// Animate progress bars when skills section is in view
+const skillsSection = document.querySelector('.skills');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateProgressBars();
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+observer.observe(skillsSection);
+
+// Add hover effect to project cards
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+    });
+});
+
+// Add typing animation to hero text
+const heroText = document.querySelector('.animated-text');
+const text = heroText.textContent;
+heroText.textContent = '';
+
+let i = 0;
+const typeWriter = () => {
+    if (i < text.length) {
+        heroText.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+};
+
+// Start typing animation when page loads
+window.addEventListener('load', typeWriter);
+
+// More Skills Button Functionality
+const moreSkillsBtn = document.querySelector('.more-skills-btn');
+const hiddenSkills = document.querySelectorAll('.hidden-skill');
+let isExpanded = false;
+
+moreSkillsBtn.addEventListener('click', () => {
+    isExpanded = !isExpanded;
+    moreSkillsBtn.classList.toggle('active');
+    
+    if (isExpanded) {
+        moreSkillsBtn.querySelector('span').textContent = 'Show Less';
+        // Show skills with staggered delay
+        hiddenSkills.forEach((skill, index) => {
+            setTimeout(() => {
+                skill.classList.add('show');
+            }, index * 150); // 150ms delay between each skill
+        });
+    } else {
+        moreSkillsBtn.querySelector('span').textContent = 'More Skills';
+        // Hide skills with staggered delay
+        hiddenSkills.forEach((skill, index) => {
+            setTimeout(() => {
+                skill.classList.remove('show');
+            }, index * 100); // 100ms delay between each skill
+        });
+    }
+});
+
+// More Projects functionality
+function toggleMoreProjects() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    const moreProjectsBtn = document.querySelector('.more-projects-btn');
+    const isExpanded = projectsGrid.classList.contains('expanded');
+
+    if (!isExpanded) {
+        // Add more projects
+        const additionalProjects = [
+            {
+                title: 'Vitrus Shopify Project',
+                image: 'images/Vitrus.png',
+                link: 'https://vitrus.com/',
+                description: 'A comprehensive e-commerce platform for Vitrus, featuring advanced product filtering and customer reviews.',
+                tech: ['HTML', 'CSS', 'Bootstrap', 'Shopify', 'Liquid'],
+                rating: 5
+            },
+            {
+                title: 'Skinnyboost Shopify Project',
+                image: 'images/Skinyboast.png',
+                link: 'https://www.skinnyboost.com/',
+                description: 'A health and wellness e-commerce platform with subscription management and loyalty program integration.',
+                tech: ['HTML', 'CSS', 'Bootstrap', 'Shopify', 'Liquid'],
+                rating: 5
+            }
+        ];
+
+        additionalProjects.forEach(project => {
+            const projectCard = createProjectCard(project);
+            projectsGrid.appendChild(projectCard);
+        });
+
+        projectsGrid.classList.add('expanded');
+        moreProjectsBtn.innerHTML = 'Show Less <i class="fas fa-arrow-up"></i>';
+    } else {
+        // Remove additional projects
+        const projects = projectsGrid.querySelectorAll('.project-card');
+        for (let i = 3; i < projects.length; i++) {
+            projects[i].remove();
+        }
+
+        projectsGrid.classList.remove('expanded');
+        moreProjectsBtn.innerHTML = 'More Projects <i class="fas fa-arrow-right"></i>';
+    }
+}
+
+function createProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.setAttribute('data-aos', 'fade-up');
+
+    card.innerHTML = `
+        <div class="project-image">
+            <img src="${project.image}" alt="${project.title}">
+            <div class="project-overlay">
+                <div class="project-links">
+                    <a href="${project.link}" class="project-link" target="_blank">
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="project-content">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="project-tech">
+                ${project.tech.map(tech => `<span>${tech}</span>`).join('')}
+            </div>
+        </div>
+    `;
+
+    return card;
+}
+
+// Project reviews data
+const projectReviews = {
+    'Homewetbar Shopify Project': [
+        {
+            name: 'John Smith',
+            rating: 5,
+            comment: 'Excellent work on the HomeWetBar project! The gift logic implementation was flawless and the UI is very intuitive. The custom product options work perfectly.'
+        },
+        {
+            name: 'Sarah Johnson',
+            rating: 4,
+            comment: 'Great job on the e-commerce platform. The checkout process is smooth and the mobile responsiveness is outstanding. Would have loved to see more payment options.'
+        }
+    ],
+    'Tipsyscope Shopify Project': [
+        {
+            name: 'Michael Brown',
+            rating: 5,
+            comment: 'Amazing work on the Tipsy Scoop website! The barlour location finder is very user-friendly and the nationwide shipping integration works perfectly.'
+        },
+        {
+            name: 'Emily Davis',
+            rating: 5,
+            comment: 'The ice cream product showcase is beautiful and the ordering system is very efficient. The custom flavor builder is a great feature!'
+        }
+    ],
+    'AdvantageLift Shopify Project': [
+        {
+            name: 'Robert Wilson',
+            rating: 5,
+            comment: 'Outstanding work on the Advantage Lifts platform! The product comparison feature is excellent and the technical specifications are well presented.'
+        },
+        {
+            name: 'Lisa Anderson',
+            rating: 4,
+            comment: 'Great job on the garage equipment showcase. The 3D product views are impressive and the installation guides are very helpful.'
+        }
+    ],
+    'Stand Out Socks Shopify Project': [
+        {
+            name: 'David Thompson',
+            rating: 5,
+            comment: 'Exceptional work on the Stand Out Socks platform! The subscription management system is seamless and the customer experience is outstanding. The sock customization options are brilliant.'
+        },
+        {
+            name: 'Emma Wilson',
+            rating: 5,
+            comment: 'The subscription model implementation is perfect, and the website design is both playful and professional. The gift box feature is particularly well executed.'
+        }
+    ],
+    'Vitrus Shopify Project': [
+        {
+            name: 'David Miller',
+            rating: 5,
+            comment: 'Excellent work on the Vitrus project! The product catalog is well organized and the search functionality is very efficient.'
+        },
+        {
+            name: 'Jennifer Taylor',
+            rating: 4,
+            comment: 'Great implementation of the e-commerce features. The customer reviews section is well integrated and the product filtering works perfectly.'
+        }
+    ],
+    'Skinnyboost Shopify Project': [
+        {
+            name: 'James Wilson',
+            rating: 5,
+            comment: 'Amazing work on the Skinnyboost website! The subscription model implementation is flawless and the product recommendations are spot on.'
+        },
+        {
+            name: 'Patricia Moore',
+            rating: 5,
+            comment: 'The health product showcase is beautiful and the checkout process is very smooth. The loyalty program integration is excellent!'
+        }
+    ]
+};
+
+// Function to create star rating HTML
+function createStarRating(rating) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            stars += '<i class="fas fa-star"></i>';
+        } else if (i - 0.5 <= rating) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            stars += '<i class="far fa-star"></i>';
+        }
+    }
+    return stars;
+}
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-    // Typed text effect for hero section
-    const typedTextElement = document.getElementById('typed-text');
-    const textToType = "Crafting Dynamic & Scalable Shopify & WordPress Solutions";
-    let index = 0;
-    
-    function typeText() {
-        if (index < textToType.length) {
-            typedTextElement.textContent += textToType.charAt(index);
-            index++;
-            setTimeout(typeText, 30);
-        } else {
-            // Add blinking cursor after typing is complete
-            typedTextElement.innerHTML = typedTextElement.textContent + '<span class="cursor">|</span>';
-            setInterval(() => {
-                const cursor = document.querySelector('.cursor');
-                if (cursor) {
-                    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-                }
-            }, 500);
-        }
-    }
-    
-    // Start typing animation
-    setTimeout(typeText, 1000);
-    
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true
     });
-    
-    // Mobile menu toggle
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
+
+    // Modal elements
+    const modal = document.getElementById('reviewModal');
+    const closeButton = document.querySelector('.close-button');
+
+    // Function to show project reviews
+    function showProjectReviews(projectTitle) {
+        if (!modal) return; // Check if modal exists
         
-        // Change icon based on menu state
-        const icon = mobileMenuToggle.querySelector('i');
-        if (mobileMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-    
-    // Close mobile menu when clicking on a link
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        const modalTitle = document.getElementById('modalProjectTitle');
+        const reviewsContainer = document.getElementById('modalReviewsContainer');
+        
+        if (!modalTitle || !reviewsContainer) return; // Check if other elements exist
+        
+        modalTitle.textContent = projectTitle;
+        reviewsContainer.innerHTML = '';
+        
+        const reviews = projectReviews[projectTitle] || [];
+        reviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review-item';
+            reviewElement.innerHTML = `
+                <div class="review-header">
+                    <h4>${review.name}</h4>
+                    <div class="review-stars">
+                        ${createStarRating(review.rating)}
+                    </div>
+                </div>
+                <p>${review.comment}</p>
+            `;
+            reviewsContainer.appendChild(reviewElement);
+        });
+        
+        modal.style.display = 'block';
+    }
+
+    // Add click event listeners to project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const projectTitle = card.querySelector('h3').textContent;
+            showProjectReviews(projectTitle);
         });
     });
-    
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark');
-    }
-    
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        
-        // Save theme preference
-        if (body.classList.contains('dark')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-    
-    // Skills filter functionality
-    const skillsSearch = document.getElementById('skills-search');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const skillTags = document.querySelectorAll('.skill-tag');
-    
-    // Filter skills based on search input
-    skillsSearch.addEventListener('input', filterSkills);
-    
-    // Filter skills based on level buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            button.classList.add('active');
-            
-            filterSkills();
-        });
-    });
-    
-    function filterSkills() {
-        const searchTerm = skillsSearch.value.toLowerCase();
-        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-        
-        skillTags.forEach(tag => {
-            const skillName = tag.textContent.toLowerCase();
-            const skillLevel = tag.classList.contains('expert') ? 'expert' : 
-                              tag.classList.contains('advanced') ? 'advanced' : 'intermediate';
-            
-            // Check if skill matches both search term and level filter
-            const matchesSearch = skillName.includes(searchTerm);
-            const matchesFilter = activeFilter === 'all' || skillLevel === activeFilter;
-            
-            // Show/hide skill tag
-            if (matchesSearch && matchesFilter) {
-                tag.style.display = 'inline-block';
-                tag.parentElement.parentElement.style.display = 'block';
-            } else {
-                tag.style.display = 'none';
-                
-                // Check if all skills in a category are hidden
-                const categorySkills = tag.parentElement.querySelectorAll('.skill-tag');
-                const allHidden = Array.from(categorySkills).every(skill => skill.style.display === 'none');
-                
-                if (allHidden) {
-                    tag.parentElement.parentElement.style.display = 'none';
-                }
-            }
+
+    // Close modal when clicking the close button
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
         });
     }
-    
-    // Experience section expand/collapse
-    const expandButtons = document.querySelectorAll('.expand-btn');
-    
-    expandButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            const content = document.getElementById(targetId);
-            
-            // Toggle content visibility
-            content.classList.toggle('active');
-            
-            // Toggle button text and icon
-            if (content.classList.contains('active')) {
-                button.querySelector('span').textContent = 'Hide Details';
-                button.classList.add('active');
-            } else {
-                button.querySelector('span').textContent = 'View Details';
-                button.classList.remove('active');
-            }
-        });
-    });
-    
-    // Projects filter
-    const filterTabs = document.querySelectorAll('.filter-tab');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            filterTabs.forEach(t => t.classList.remove('active'));
-            
-            // Add active class to clicked tab
-            tab.classList.add('active');
-            
-            // Get filter value
-            const filter = tab.getAttribute('data-filter');
-            
-            // Filter projects
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-    
-    // Project modal functionality
-    const modal = document.getElementById('project-modal');
-    const modalClose = document.querySelector('.modal-close');
-    const projectDetailsBtns = document.querySelectorAll('.project-details-btn');
-    const modalTabs = document.querySelectorAll('.modal-tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    // Project data for modal
-    const projectData = [
-        {
-            id: 1,
-            title: "DALL-E 2 PyTorch Implementation",
-            description: "Open-source implementation of OpenAI's DALL-E 2 image generation model using PyTorch.",
-            longDescription: "A PyTorch implementation of the DALL-E 2 architecture for generating high-quality images from text descriptions. The project includes optimizations for CUDA acceleration and containerization with Docker for easy deployment and scaling.",
-            achievements: [
-                "Implemented the full DALL-E 2 architecture with PyTorch",
-                "Optimized for CUDA acceleration with 40% performance improvement",
-                "Created Docker containers for easy deployment",
-                "Built a web interface for text-to-image generation"
-            ],
-            technologies: ["PyTorch", "CUDA", "Docker", "HuggingFace", "Python"],
-            completed: "2023",
-            teamSize: 2,
-            difficulty: 5,
-            demoUrl: "#",
-            githubUrl: "https://github.com",
-            imageUrl: "https://via.placeholder.com/800x450"
-        },
-        {
-            id: 2,
-            title: "Multi-Agent RL Environment",
-            description: "A flexible environment for training and evaluating multi-agent reinforcement learning algorithms.",
-            longDescription: "A customizable environment for developing and testing multi-agent reinforcement learning algorithms. The system supports various reward structures, observation spaces, and agent interactions.",
-            achievements: [
-                "Designed a flexible multi-agent environment supporting various RL algorithms",
-                "Implemented custom reward structures and observation spaces",
-                "Created visualization tools for agent behavior analysis",
-                "Benchmarked performance against standard environments"
-            ],
-            technologies: ["Python", "TensorFlow", "OpenAI Gym", "Ray", "Docker"],
-            completed: "2023",
-            teamSize: 2,
-            difficulty: 4,
-            demoUrl: "#",
-            githubUrl: "https://github.com",
-            imageUrl: "https://via.placeholder.com/800x450"
-        },
-        {
-            id: 3,
-            title: "Community Grant Management System",
-            description: "Web application for managing community grant applications, reviews, and distributions.",
-            longDescription: "A full-stack web application that streamlines the process of managing community grants from application to distribution. The system includes features for application submission, review workflows, and financial tracking.",
-            achievements: [
-                "Built a full-stack application with Next.js and PostgreSQL",
-                "Implemented secure authentication and authorization",
-                "Created a workflow system for grant application review",
-                "Deployed on AWS with CI/CD pipeline"
-            ],
-            technologies: ["Next.js", "PostgreSQL", "AWS", "TypeScript", "Prisma"],
-            completed: "2022",
-            teamSize: 2,
-            difficulty: 3,
-            demoUrl: "#",
-            githubUrl: "https://github.com",
-            imageUrl: "https://via.placeholder.com/800x450"
-        }
-    ];
-    
-    // Open modal with project details
-    projectDetailsBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const projectId = parseInt(btn.getAttribute('data-project'));
-            const project = projectData.find(p => p.id === projectId);
-            
-            if (project) {
-                // Set modal content
-                document.getElementById('modal-title').textContent = project.title;
-                document.getElementById('modal-description').textContent = project.description;
-                document.getElementById('modal-long-description').textContent = project.longDescription;
-                
-                // Set implementation details
-                document.getElementById('modal-implementation').textContent = `This project was implemented using ${project.technologies.join(", ")}. The development process involved careful planning, iterative development, and rigorous testing to ensure high-quality results.`;
-                
-                // Set challenges
-                document.getElementById('modal-challenges').textContent = "During development, we encountered several challenges including performance optimization, scalability concerns, and integration complexities. These were addressed through innovative approaches and best practices in software engineering.";
-                
-                // Set achievements
-                const achievementsList = document.getElementById('modal-achievements');
-                achievementsList.innerHTML = '';
-                project.achievements.forEach(achievement => {
-                    const li = document.createElement('li');
-                    li.textContent = achievement;
-                    achievementsList.appendChild(li);
-                });
-                
-                // Set technologies
-                const technologiesDiv = document.getElementById('modal-technologies');
-                technologiesDiv.innerHTML = '';
-                project.technologies.forEach(tech => {
-                    const span = document.createElement('span');
-                    span.className = 'tag';
-                    span.textContent = tech;
-                    technologiesDiv.appendChild(span);
-                });
-                
-                // Set project info
-                document.getElementById('modal-completed').textContent = project.completed;
-                document.getElementById('modal-team').textContent = `${project.teamSize} people`;
-                
-                // Set difficulty stars
-                const difficultyDiv = document.getElementById('modal-difficulty');
-                difficultyDiv.innerHTML = '';
-                for (let i = 0; i < 5; i++) {
-                    const star = document.createElement('i');
-                    star.className = i < project.difficulty ? 'fas fa-star' : 'far fa-star';
-                    difficultyDiv.appendChild(star);
-                }
-                
-                // Set links
-                document.getElementById('modal-demo').href = project.demoUrl;
-                document.getElementById('modal-github').href = project.githubUrl;
-                
-                // Set image
-                document.getElementById('modal-image').querySelector('img').src = project.imageUrl;
-                
-                // Show modal
-                modal.classList.add('active');
-                
-                // Reset to overview tab
-                modalTabs.forEach(tab => tab.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                document.querySelector('[data-tab="overview"]').classList.add('active');
-                document.getElementById('tab-overview').classList.add('active');
-            }
-        });
-    });
-    
-    // Close modal
-    modalClose.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-    
+
     // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
+    window.addEventListener('click', (event) => {
+        if (modal && event.target === modal) {
+            modal.style.display = 'none';
         }
     });
+
+    // Handle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
     
-    // Modal tabs
-    modalTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            modalTabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Add active class to clicked tab
-            tab.classList.add('active');
-            
-            // Show corresponding content
-            const tabId = tab.getAttribute('data-tab');
-            document.getElementById(`tab-${tabId}`).classList.add('active');
-        });
-    });
-    
-    // Contact form submission
-    const contactForm = document.getElementById('contact-form');
-    
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Simulate form submission
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            // Reset form
-            contactForm.reset();
-            
-            // Show success message
-            alert('Thank you for your message! I will get back to you soon.');
-            
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-    
-    // Newsletter form submission
-    const newsletterForm = document.getElementById('newsletter-form');
-    
-    newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get email
-        const email = document.getElementById('newsletter-email').value;
-        
-        // Simulate subscription
-        const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-        const originalIcon = submitBtn.innerHTML;
-        
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            // Reset form
-            newsletterForm.reset();
-            
-            // Show success message
-            alert('Thank you for subscribing to my newsletter!');
-            
-            // Reset button
-            submitBtn.innerHTML = originalIcon;
-            submitBtn.disabled = false;
-        }, 1500);
-    });
-    
-    // Back to top button
-    const backToTopBtn = document.getElementById('back-to-top-btn');
-    
-    backToTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    // Add animation classes on scroll
-    const animatedElements = document.querySelectorAll('.section-header, .about-content, .skills-grid, .experience-card, .project-card');
-    
-    function checkScroll() {
-        animatedElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementTop < windowHeight * 0.8) {
-                element.classList.add('animate-fade-in');
-            }
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
     }
-    
-    // Initial check
-    checkScroll();
-    
-    // Check on scroll
-    window.addEventListener('scroll', checkScroll);
-});
 
-// Add this to your existing script.js file
-
-// Projects filter functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const projectCards = document.querySelectorAll('.project-card');
-  
-  // Add animation classes to project cards
-  projectCards.forEach(card => {
-    card.classList.add('animate-fade-in-up');
-  });
-  
-  // Filter projects based on category
-  filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active class from all tabs
-      filterTabs.forEach(t => t.classList.remove('active'));
-      
-      // Add active class to clicked tab
-      tab.classList.add('active');
-      
-      // Get filter value
-      const filter = tab.getAttribute('data-filter');
-      
-      // Filter projects with animation
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        
-        // Reset animation
-        card.style.animation = 'none';
-        card.offsetHeight; // Trigger reflow
-        
-        if (filter === 'all' || category === filter) {
-          card.style.display = 'flex';
-          card.style.animation = 'fadeInUp 0.6s ease-out forwards';
-        } else {
-          card.style.display = 'none';
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (navLinks && navLinks.classList.contains('active') && 
+            !event.target.closest('.nav-links') && 
+            !event.target.closest('.menu-toggle')) {
+            navLinks.classList.remove('active');
+            if (menuToggle) menuToggle.classList.remove('active');
         }
-      });
     });
-  });
-  
-  // Add hover pulse effect to featured project
-  const featuredHeading = document.querySelector('.featured-heading');
-  if (featuredHeading) {
-    featuredHeading.classList.add('animate-pulse');
-  }
-  
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fade-in-up');
-      }
+
+    // Handle smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking a link
+                if (navLinks) navLinks.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
+            }
+        });
     });
-  }, { threshold: 0.1 });
-  
-  // Observe all project cards
-  projectCards.forEach(card => {
-    observer.observe(card);
-  });
-  
-  // Add parallax effect to project images on mouse move
-  const projectImages = document.querySelectorAll('.project-image');
-  
-  projectImages.forEach(image => {
-    image.addEventListener('mousemove', (e) => {
-      const { left, top, width, height } = image.getBoundingClientRect();
-      const x = (e.clientX - left) / width - 0.5;
-      const y = (e.clientY - top) / height - 0.5;
-      
-      const img = image.querySelector('img');
-      img.style.transform = `scale(1.1) translate(${x * 10}px, ${y * 10}px)`;
-    });
-    
-    image.addEventListener('mouseleave', () => {
-      const img = image.querySelector('img');
-      img.style.transform = 'scale(1)';
-    });
-  });
 });
+
+// Attach event listeners to all project star ratings
+function attachStarClickListeners() {
+    document.querySelectorAll('.project-stars').forEach(starsDiv => {
+        starsDiv.style.cursor = 'pointer'; // Make it clear it's clickable
+        starsDiv.removeEventListener('click', handleStarClick); // Prevent duplicate listeners
+        starsDiv.addEventListener('click', handleStarClick);
+    });
+}
+
+function handleStarClick(event) {
+    // Find the closest parent project card to get the title
+    const projectCard = event.target.closest('.project-card');
+    if (projectCard) {
+        const projectTitle = projectCard.querySelector('h3').textContent;
+        showProjectReviews(projectTitle);
+    }
+}
+
+// Initial attachment of listeners for existing cards
+document.addEventListener('DOMContentLoaded', attachStarClickListeners);
+
+// Also attach listeners when more projects are loaded dynamically
+const originalToggleMoreProjects = toggleMoreProjects; // Save original function
+toggleMoreProjects = function() {
+    originalToggleMoreProjects(); // Call the original functionality
+    setTimeout(attachStarClickListeners, 100); // Re-attach after new cards are rendered
+}; 

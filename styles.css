@@ -212,7 +212,7 @@ body {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: var(--gradient-2);
+    background: var(--gradient-1);
     border-radius: 50%;
     z-index: -1;
     animation: rotate 4s linear infinite;
@@ -307,7 +307,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--gradient-2);
+    background: var(--gradient-1);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -973,17 +973,15 @@ body {
     box-shadow: 0 0 0 3px rgba(0, 245, 160, 0.2);
 }
 
-#contact-form input:focus + label,
-#contact-form input:not(:placeholder-shown) + label,
-#contact-form textarea:focus + label,
-#contact-form textarea:not(:placeholder-shown) + label {
-    top: 5px;
-    font-size: 0.75rem;
-    color: var(--primary-color);
+#contact-form .form-group.has-value label,
+#contact-form .form-group.is-focused label {
+    top: -20px; /* Move label completely out of view */
+    opacity: 0;
+    visibility: hidden;
 }
 
 #contact-form .btn-primary.btn-block {
-    background: var(--gradient-1);
+    background: linear-gradient(135deg, #00F5A0 0%, #00D9F5 100%);
     color: var(--background);
     padding: 1rem;
     border: none;
@@ -991,7 +989,7 @@ body {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -999,10 +997,14 @@ body {
     justify-content: center;
     gap: 0.5rem;
     width: 100%; /* Ensure it takes full width */
+    box-shadow: 0 4px 15px rgba(0, 245, 160, 0.2);
 }
 
 #contact-form .btn-primary.btn-block:hover {
-    color: black;
+    background: var(--gradient-1); /* Consistent gradient on hover */
+    color: var(--background);
+    box-shadow: 0 8px 25px rgba(0, 245, 160, 0.4);
+    transform: translateY(-2px);
 }
 
 #contact-form .btn-primary.btn-block i {
@@ -1011,7 +1013,7 @@ body {
 }
 
 #contact-form .btn-primary.btn-block:hover i {
-    color: black;
+    color: var(--background);
 }
 
 @media (max-width: 768px) {
@@ -1289,7 +1291,7 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--gradient-2);
+    background: var(--gradient-1);
 }
 
 .hidden-skill {
@@ -1510,4 +1512,10 @@ body.no-scroll {
 
 .projects-grid:not(.expanded) .project-card:nth-child(n+4) {
     display: none;
+}
+
+#contact-form .form-group.has-value label,
+#contact-form .form-group.is-focused label {
+    opacity: 0;
+    /* Consider adding a small transform for a smoother transition if desired, e.g., transform: translateY(-10px); */
 } 

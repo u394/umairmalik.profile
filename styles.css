@@ -571,17 +571,19 @@ body {
 
 .skill-card {
     background: rgba(255, 255, 255, 0.02);
-    padding: 2rem;
     border-radius: 15px;
+    padding: 2rem;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 245, 160, 0.05);
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 245, 160, 0.15);
+    border-color: rgba(0, 245, 160, 0.3);
     background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .skill-icon {
@@ -672,18 +674,42 @@ body {
 
 .project-card {
     background: rgba(255, 255, 255, 0.02);
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 1;
-    transform: translateY(0);
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateY(100px);
+    box-shadow: 0 0 0 rgba(0, 245, 160, 0);
 }
 
+.projects-grid.expanded .project-card {
+    transform: translateY(0);
+    animation: smoothSlideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    box-shadow: 0 10px 30px rgba(0, 245, 160, 0.1);
+}
+
+@keyframes smoothSlideUp {
+    0% {
+        transform: translateY(100px);
+        box-shadow: 0 0 0 rgba(0, 245, 160, 0);
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 10px 30px rgba(0, 245, 160, 0.1);
+    }
+}
+
+/* Add stagger effect for project cards */
+.projects-grid .project-card:nth-child(1) { animation-delay: 0.1s; }
+.projects-grid .project-card:nth-child(2) { animation-delay: 0.2s; }
+.projects-grid .project-card:nth-child(3) { animation-delay: 0.3s; }
+.projects-grid .project-card:nth-child(4) { animation-delay: 0.4s; }
+.projects-grid .project-card:nth-child(5) { animation-delay: 0.5s; }
+.projects-grid .project-card:nth-child(6) { animation-delay: 0.6s; }
+
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 245, 160, 0.15);
 }
 
 .project-image {
@@ -854,105 +880,109 @@ body {
     gap: 4rem;
 }
 
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .contact-info {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.info-item i {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--card-bg);
-    display: flex;
-    align-items: center;
+    gap: 1.5rem;
     justify-content: center;
+}
+
+.contact-info .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--light-text);
+    font-size: 1.1rem;
+}
+
+.contact-info .contact-item i {
     color: var(--primary-color);
-    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.contact-info .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-info .social-links a {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.contact-info .social-links a:hover {
+    color: var(--primary-color);
+}
+
+#contact-form {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
     border: 1px solid var(--border-color);
-}
-
-.social-links a:hover {
-    background: var(--primary-color);
-    color: var(--background);
-    transform: translateY(-3px);
-}
-
-.contact-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.form-group {
+#contact-form .form-group {
     position: relative;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+#contact-form label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: var(--light-text);
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: var(--card-bg);
+    pointer-events: none; /* Allows click-through to input */
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    padding-top: 25px; /* Space for label */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     color: var(--text-color);
-    backdrop-filter: blur(10px);
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: none;
-}
-
-.form-group label {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    color: var(--light-text);
+    font-size: 1rem;
+    outline: none;
     transition: all 0.3s ease;
-    pointer-events: none;
-    background: var(--card-bg);
+    resize: vertical; /* Allow vertical resize for textarea */
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+#contact-form input::placeholder, #contact-form textarea::placeholder {
+    color: transparent;
+}
+
+#contact-form input:focus, #contact-form textarea:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(0, 245, 160, 0.2);
+    box-shadow: 0 0 0 3px rgba(0, 245, 160, 0.2);
 }
 
-.form-group input:focus + label,
-.form-group textarea:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:not(:placeholder-shown) + label {
-    top: -0.5rem;
-    left: 0.5rem;
-    font-size: 0.8rem;
-    background: white;
-    padding: 0 0.5rem;
+#contact-form input:focus + label,
+#contact-form input:not(:placeholder-shown) + label,
+#contact-form textarea:focus + label,
+#contact-form textarea:not(:placeholder-shown) + label {
+    top: 5px;
+    font-size: 0.75rem;
     color: var(--primary-color);
 }
 
-.submit-btn {
+#contact-form .btn-primary.btn-block {
     background: var(--gradient-1);
     color: var(--background);
     padding: 1rem;
@@ -968,24 +998,37 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%; /* Ensure it takes full width */
 }
 
-.submit-btn:hover {
+#contact-form .btn-primary.btn-block:hover {
     color: black;
 }
 
-.submit-btn i {
+#contact-form .btn-primary.btn-block i {
     color: var(--background);
     transition: color 0.3s ease;
 }
 
-.submit-btn:hover i {
+#contact-form .btn-primary.btn-block:hover i {
     color: black;
 }
 
 @media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
+    #contact-form {
+        padding: 1.5rem;
+    }
+
+    #contact-form label {
+        font-size: 0.9rem;
+    }
+
+    #contact-form input, #contact-form textarea {
+        font-size: 0.9rem;
+    }
+
+    #contact-form .btn-primary.btn-block {
+        font-size: 1rem;
     }
 }
 
@@ -1251,49 +1294,67 @@ footer {
 
 .hidden-skill {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out, max-height 0.6s ease-out, padding 0.6s ease-out, margin 0.6s ease-out; /* Smooth transition for all properties */
+    transform: translateY(40px) scale(0.95);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     visibility: hidden;
-    max-height: 0; /* Use max-height for smooth height transition */
+    max-height: 0;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Hide overflow during transition */
+    overflow: hidden;
+    filter: blur(4px) brightness(0.8);
+    transform-origin: center bottom;
+    box-shadow: 0 0 0 rgba(0, 245, 160, 0);
 }
 
 .hidden-skill.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     visibility: visible;
-    max-height: 500px; /* A value larger than the max possible height of a skill card */
-    /* Restore original padding and margin for skill-card here, or ensure they are set in .skill-card */
+    max-height: 500px;
     margin: 1rem;
     padding: 2rem;
-    /* Removing animation here as transitions will handle it */
+    filter: blur(0) brightness(1);
+    animation: skillReveal 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    box-shadow: 0 10px 30px rgba(0, 245, 160, 0.1);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
-.more-skills-btn {
-    background: var(--gradient-1);
-    color: var(--background);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 245, 160, 0.2);
+.hidden-skill.show:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 245, 160, 0.15);
+    border-color: rgba(0, 245, 160, 0.3);
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.more-skills-btn i {
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes skillReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        filter: blur(4px) brightness(0.8);
+        box-shadow: 0 0 0 rgba(0, 245, 160, 0);
+    }
+    30% {
+        opacity: 0.7;
+        filter: blur(2px) brightness(0.9);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0) brightness(1);
+        box-shadow: 0 10px 30px rgba(0, 245, 160, 0.1);
+    }
 }
 
-.more-skills-btn.active i {
-    transform: rotate(180deg);
-}
+/* Add stagger effect for skills with easing */
+.skills-grid .hidden-skill:nth-child(1).show { animation-delay: 0.1s; }
+.skills-grid .hidden-skill:nth-child(2).show { animation-delay: 0.2s; }
+.skills-grid .hidden-skill:nth-child(3).show { animation-delay: 0.3s; }
+.skills-grid .hidden-skill:nth-child(4).show { animation-delay: 0.4s; }
+.skills-grid .hidden-skill:nth-child(5).show { animation-delay: 0.5s; }
+.skills-grid .hidden-skill:nth-child(6).show { animation-delay: 0.6s; }
 
 /* Main Content */
 main {

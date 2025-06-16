@@ -22,6 +22,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body {
@@ -29,18 +30,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background);
-}
-
-/* Header Styles */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--background);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Navigation */
@@ -48,7 +38,8 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; /* Ensure it takes full width */
+    box-sizing: border-box; /* Include padding in width calculation */
     z-index: 1000;
     padding: 1.5rem 0;
     transition: transform 0.3s ease;
@@ -112,6 +103,7 @@ header {
     align-items: center;
     gap: 2rem;
     list-style: none;
+    z-index: 1002;
 }
 
 .nav-links a {
@@ -146,6 +138,7 @@ header {
 .burger {
     display: none;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .burger div {
@@ -574,8 +567,6 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-bottom: 2rem;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-card {
@@ -801,10 +792,7 @@ header {
     margin-top: 1rem;
     color: #FFD700; /* Gold color for stars */
     font-size: 1.1rem;
-}
-
-.project-stars i {
-    margin-right: 0.2rem;
+    cursor: pointer;
 }
 
 .projects-more {
@@ -1098,12 +1086,22 @@ footer {
         font-size: 1rem;
     }
 
+    .nav-container {
+        padding: 0 1rem; /* Adjusted padding for mobile */
+        flex-wrap: nowrap; /* Prevent wrapping if not desired */
+    }
+
+    .logo {
+        font-size: 1.5rem; /* Adjust logo size for mobile */
+        flex-shrink: 1; /* Allow logo to shrink */
+    }
+
     .nav-links {
         position: fixed;
         right: 0;
-        top: 70px;
+        top: 70px; /* Adjust based on your navbar height */
         background: rgba(0, 0, 0, 0.95);
-        height: calc(100vh - 70px);
+        height: calc(100vh - 70px); /* Adjust based on your navbar height */
         width: 100%;
         flex-direction: column;
         align-items: center;
@@ -1111,18 +1109,21 @@ footer {
         transform: translateX(100%);
         transition: transform 0.5s ease;
         border-left: 1px solid var(--border-color);
+        z-index: 1002;
+        display: none; /* Hidden by default on mobile */
     }
 
     .nav-links.active {
         transform: translateX(0);
+        display: flex; /* Display as flex when active */
     }
 
     .nav-links li {
-        opacity: 0;
+        /* Ensure links are visible */
     }
 
     .burger {
-        display: block;
+        display: block; /* Ensure the burger icon is visible */
         z-index: 1001;
     }
 
@@ -1149,6 +1150,59 @@ footer {
 
     .contact-container {
         grid-template-columns: 1fr;
+    }
+
+    .cta-buttons .btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .skills-more {
+        margin-top: 1rem; /* Reduced space above More Skills button */
+    }
+
+    .skills-grid {
+        gap: 0; /* Remove gap on mobile */
+    }
+
+    .section-title {
+        font-size: 2rem; /* Reduced from 3rem */
+    }
+
+    .about-header h3 {
+        font-size: 1.5rem; /* Reduced from 2rem */
+    }
+
+    .skill-card h3 {
+        font-size: 1.2rem; /* Reduced from 1.5rem */
+    }
+
+    .project-content h3 {
+        font-size: 1.2rem; /* Reduced from 1.5rem */
+    }
+
+    .contact h2 {
+        font-size: 2rem; /* Reduced from 3rem */
+    }
+
+    .experience-badge {
+        padding: 0.6rem 1.2rem; /* Reduced padding */
+    }
+
+    .experience-badge span {
+        font-size: 1.8rem; /* Reduced from 2.5rem */
+    }
+
+    .experience-badge p {
+        font-size: 0.8rem; /* Reduced from 0.9rem */
+    }
+
+    .hero-content h1.animated-text {
+        font-size: 2.5rem; /* Adjust as needed for mobile */
+    }
+
+    .cto-spacing {
+        letter-spacing: 5px; /* Adjust letter spacing for mobile */
     }
 }
 
@@ -1373,4 +1427,28 @@ main {
 
 #modalReviewsContainer::-webkit-scrollbar-thumb:hover {
     opacity: 0.8;
+}
+
+/* Add to the end of your CSS or in a suitable global place */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Ensure the navbar itself is on top */
+.navbar {
+    z-index: 1000;
+}
+
+/* Ensure the burger is on top of everything */
+.burger {
+    z-index: 1001;
+}
+
+/* Ensure the mobile menu is on top of everything else */
+.nav-links {
+    z-index: 1002;
+}
+
+.cto-spacing {
+    letter-spacing: 10px; /* Adjust as needed */
 } 

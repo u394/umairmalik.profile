@@ -367,4 +367,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return starsHtml;
     }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const formGroups = contactForm.querySelectorAll('.form-group');
+
+        formGroups.forEach(formGroup => {
+            const input = formGroup.querySelector('input, textarea');
+            const label = formGroup.querySelector('label');
+
+            if (input && label) {
+                // Function to update label state
+                function updateLabelState() {
+                    if (input.value.trim() !== '') {
+                        formGroup.classList.add('has-value');
+                    } else {
+                        formGroup.classList.remove('has-value');
+                    }
+                }
+
+                // Initial check on load for autofilled fields
+                updateLabelState();
+
+                input.addEventListener('focus', () => {
+                    formGroup.classList.add('is-focused');
+                });
+
+                input.addEventListener('blur', () => {
+                    formGroup.classList.remove('is-focused');
+                    updateLabelState(); // Check value on blur
+                });
+
+                // Also check on input for dynamic changes (typing)
+                input.addEventListener('input', () => {
+                    updateLabelState();
+                });
+            }
+        });
+    }
 }); 

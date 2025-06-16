@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! | Umair Malik</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: var(--background);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .thank-you-container {
+            background: var(--card-bg);
+            padding: 3rem 2rem 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 245, 160, 0.1);
+            max-width: 600px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        .thank-you-container i {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .thank-you-container h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .thank-you-container p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 1rem;
+            background: var(--gradient-1);
+            color: var(--background);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .home-button i {
+            font-size: 1rem;
+            color: var(--background);
+            vertical-align: middle; /* Ensure icon is aligned to middle */
+            transform: translateY(4px); /* Increased translateY to move icon further down for better alignment */
+            line-height: 1; /* Normalize line height */
+        }
+        .home-button span {
+            vertical-align: middle; /* Ensure text is aligned to middle */
+            line-height: 1; /* Normalize line height */
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 245, 160, 0.4);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 2rem;
+            }
+            .thank-you-container h1 {
+                font-size: 2rem;
+            }
+            .thank-you-container p {
+                font-size: 1rem;
+            }
+            .home-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .home-button i {
+                font-size: 0.8rem; /* Reduced icon size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <i class="fas fa-check-circle"></i>
+        <h1>Thank You!</h1>
+        <p>Your message has been successfully sent. I will get back to you as soon as possible.</p>
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            <span>Go Back to Home</span>
+        </a>
+    </div>
+</body>
+</html> 

@@ -961,25 +961,32 @@ body {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, color 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-2);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.submit-btn:hover {
+    color: black;
 }
 
-.submit-btn:hover::before {
-    opacity: 1;
+.submit-btn i {
+    color: var(--background);
+    transition: color 0.3s ease;
+}
+
+.submit-btn:hover i {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Footer */

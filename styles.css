@@ -1252,32 +1252,23 @@ footer {
 .hidden-skill {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, max-height 0.6s ease-out, padding 0.6s ease-out, margin 0.6s ease-out; /* Smooth transition for all properties */
     visibility: hidden;
-    height: 0;
+    max-height: 0; /* Use max-height for smooth height transition */
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Hide overflow during transition */
 }
 
 .hidden-skill.show {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
-    height: auto;
-    margin: 0;
+    max-height: 500px; /* A value larger than the max possible height of a skill card */
+    /* Restore original padding and margin for skill-card here, or ensure they are set in .skill-card */
+    margin: 1rem;
     padding: 2rem;
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    /* Removing animation here as transitions will handle it */
 }
 
 .more-skills-btn {

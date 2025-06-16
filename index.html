@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Umair Malik | Web Developer</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
@@ -31,7 +31,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content" data-aos="fade-right">
-            <h1 class="animated-text">Umair Malik</h1>
+            <h1 class="animated-text"><span class="cto-spacing">CTO</span> Umair Malik</h1>
             <p class="subtitle">Full Stack Developer</p>
             <p class="experience-text">5+ years of experience in building modern web applications. Specialized in React, Node.js, and cloud technologies. Passionate about creating efficient and scalable solutions.</p>
             <div class="cta-buttons">
@@ -41,7 +41,7 @@
         </div>
         <div class="hero-image-container" data-aos="fade-left">
             <div class="profile-image">
-                <img src="Images/file(1).enc" alt="Umair Malik">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Umair Malik">
             </div>
         </div>
     </section>
@@ -393,17 +393,17 @@
                     <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-            <form action="https://formsubmit.co/malikumairsaeed11@gmail.com" method="POST" id="contact-form" class="contact-form" data-aos="fade-left">
+            <form class="contact-form" data-aos="fade-left" action="https://formspree.io/f/malikumairsaeed11@gmail.com" method="POST">
                 <div class="form-group">
                     <input type="text" id="name" name="name" required>
                     <label for="name">Name</label>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" email="email" required>
+                    <input type="email" id="email" name="_replyto" required>
                     <label for="email">Email</label>
                 </div>
                 <div class="form-group">
-                    <textarea id="message" name="textarea" required></textarea>
+                    <textarea id="message" name="message" required></textarea>
                     <label for="message">Message</label>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
@@ -427,7 +427,6 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

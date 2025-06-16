@@ -686,10 +686,6 @@ body {
     border-color: var(--primary-color);
 }
 
-.projects-grid:not(.expanded) .project-card:nth-child(n+4) {
-    display: none;
-}
-
 .project-image {
     position: relative;
     width: 100%;
@@ -1451,4 +1447,8 @@ body.no-scroll {
 
 .cto-spacing {
     letter-spacing: 10px; /* Adjust as needed */
+}
+
+.projects-grid:not(.expanded) .project-card:nth-child(n+4) {
+    display: none;
 } 
